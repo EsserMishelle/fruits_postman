@@ -1,23 +1,9 @@
-require('dotenv').config();
-require('../config/connection.js');
-const express = require('express');
-const morgan = require('morgan');
-const session = require('express-session');
-const MongoStore = require('connect-mongo');
+const startFruits = [
+  { name: "Orange", color: "orange", readyToEat: false, username: "Devin" },
+  { name: "Grape", color: "purple", readyToEat: false, username: "Devin" },
+  { name: "Banana", color: "orange", readyToEat: false, username: "Devin" },
+  { name: "Strawberry", color: "red", readyToEat: false, username: "Devin2" },
+  { name: "Coconut", color: "brown", readyToEat: false, username: "Devin2" },
+];
 
-const middleware = (app) => {
-  app.use(morgan('dev')); // logging
-  app.use(express.json()); // parses urlencoded request bodies
-  app.use(express.static('public'));
-
-  app.use(
-    session({
-      secret: process.env.SECRET,
-      store: MongoStore.create({ mongoUrl: process.env.MONGO_URI }),
-      saveUninitialized: true,
-      resave: false
-    })
-  )
-}
-
-module.exports = middleware;
+module.exports = startFruits;
